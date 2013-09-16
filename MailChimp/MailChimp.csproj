@@ -64,6 +64,8 @@
     <Compile Include="Campaigns\CampaignTypeAutoResponderOptions.cs" />
     <Compile Include="Campaigns\CampaignTypeOptions.cs" />
     <Compile Include="Campaigns\CampaignTypeRssOptions.cs" />
+    <Compile Include="Campaigns\UpdateCampaignError.cs" />
+    <Compile Include="Campaigns\UpdateCampaignResult.cs" />
     <Compile Include="Errors\ApiError.cs" />
     <Compile Include="Errors\MailChimpAPIException.cs" />
     <Compile Include="Folders\FolderActionResult.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Lists\BatchSubscribeResult.cs" />
     <Compile Include="Lists\ListFilter.cs" />
     <Compile Include="Lists\ListInfo.cs" />
+    <Compile Include="Lists\ListMergeVarInfo.cs" />
     <Compile Include="Lists\ListResult.cs" />
     <Compile Include="Lists\MCLocation.cs" />
     <Compile Include="Lists\MCNote.cs" />
@@ -101,6 +104,9 @@
     <Compile Include="Lists\MemberNote.cs" />
     <Compile Include="Lists\MembersResult.cs" />
     <Compile Include="Lists\MergeVar.cs" />
+    <Compile Include="Lists\MergeVarError.cs" />
+    <Compile Include="Lists\MergeVarInfo.cs" />
+    <Compile Include="Lists\MergeVarsResult.cs" />
     <Compile Include="Lists\StaticSegmentAddResult.cs" />
     <Compile Include="Lists\StaticSegmentActionResult.cs" />
     <Compile Include="Lists\StaticSegmentMembersAddResult.cs" />

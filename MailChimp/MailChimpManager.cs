@@ -398,6 +398,40 @@ namespace MailChimp
             //  Make the call:
             return MakeAPICall<Campaign>(apiAction, args);
         }
+
+        /// <summary>
+        /// Update just about any setting besides type for a campaign that has not been sent. See campaign/create for details.
+        /// See http://apidocs.mailchimp.com/api/2.0/campaigns/update.php for explanation of full options.
+        /// </summary>
+        /// <param name="cId">the id of the campaign</param>
+        /// <param name="options">A struct of the standard options for this campaign.</param>
+        /// <param name="content">The content for this campaign </param>
+        /// <param name="segmentOptions">optional - if you wish to do Segmentation with this campaign this array should contain: see CampaignSegmentTest(). It's suggested that you test your options against campaignSegmentTest().</param>
+        /// <param name="typeOptions">optional - various extra options based on the campaign type</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// If you set a new list_id, all segmentation options will be deleted and must be re-added.
+        /// If you set template_id, you need to follow that up by setting it's 'content'
+        /// If you set segment_opts, you should have tested your options against campaign/segment-test().
+        /// To clear/unset segment_opts, pass an empty string or array as the value. Various wrappers may require one or the other.
+        /// </remarks>
+        public Campaign UpdateCampaign(string cId, string name, object[] value)
+        {
+            //  Our api action:
+            string apiAction = "campaigns/update";
+
+            //  Create our arguments object:
+            object args = new
+            {
+                apikey = this.APIKey,
+                cId = cId,
+                name = name,
+                value = value
+            };
+            //  Make the call:
+            return MakeAPICall<Campaign>(apiAction, args);
+        }
+
         #endregion
 
         #region API: Folders
@@ -714,6 +748,53 @@ namespace MailChimp
 
             //  Make the call:
             return MakeAPICall<MembersResult>(apiAction, args);
+        }
+
+        /// <summary>
+        /// Add a new merge tag to a given list
+        /// </summary>
+        /// <param name="listId">The list id to connect to (can be gathered using GetLists())</param>
+        /// <param name="tag">The merge tag to add, e.g. FNAME. 10 bytes max, valid characters: "A-Z 0-9 _" no spaces, dashes, etc. Some tags and prefixes are reserved.</param>
+        /// <param name="name">The long description of the tag being added, used for user displays - max 50 bytes.</param>
+        /// <param name="options">Optional various options for this merge var.</param>
+        /// <returns></returns>
+        public StaticSegmentAddResult AddMergeVar(string listId, string tag, string name, object options)
+        {
+            // our api action:
+            string apiAction = "lists/merge-var-add";
+
+            // create our arguments object:
+            object args = new
+            {
+                apikey = this.APIKey,
+                id = listId,
+                tag = tag,
+                name = name,
+                options = options
+            };
+            return MakeAPICall<MergeVarInfo>(apiAction, args);
+        }
+
+
+        /// <summary>
+        /// Get the list of merge tags for a given list, including their name, tag, and required setting.
+        /// </summary>
+        /// <param name="listIds">The list ids to retrieve merge vars for. Max of 100.</param>
+        /// <returns></returns>
+        public MergeVarsResult GetMergeVarsForList(params string[] listIds)
+        {
+            //  Our api action:
+            string apiAction = "lists/merge-vars";
+
+            //  Create our arguments object:
+            object args = new
+            {
+                apikey = this.APIKey,
+                id = listIds
+            };
+
+            //  Make the call:
+            return MakeAPICall<MergeVarsResult>(apiAction, args);
         }
 
         /// <summary>

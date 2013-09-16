@@ -211,6 +211,34 @@ namespace MailChimp.Tests
         }
 
         [TestMethod]
+        public void GetMergeVarsForList_Successful()
+        {
+            //  Arrange
+            MailChimpManager mc = new MailChimpManager(TestGlobal.Test_APIKey);
+            ListResult lists = mc.GetLists();
+
+            //  For each list
+            foreach (var list in lists.Data)
+            {
+                //  Write out the list name:
+                Debug.WriteLine("Merge Vars for the list " + list.Name);
+
+                //  Get the first 100 members of each list:
+                MergeVarsResult results = mc.GetMergeVarsForList(list.Id);
+
+                //  Write out each member's email address:
+                foreach (var listMergeVar in results.Data)
+                {
+                    Debug.WriteLine("Merge Vars for returned for list " + listMergeVar.ListName);
+                    foreach (var mergeVar in listMergeVar.MergeVars)
+                    {
+                        Debug.WriteLine("Merge Var: " + mergeVar.Name);
+                    }
+                }
+            }
+        }
+
+        [TestMethod]
         public void GetLocationsForList_Successful()
         {
             //  Arrange
