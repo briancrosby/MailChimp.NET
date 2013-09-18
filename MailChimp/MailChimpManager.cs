@@ -424,7 +424,7 @@ namespace MailChimp
             object args = new
             {
                 apikey = this.APIKey,
-                cId = cId,
+                cid = cId,
                 name = name,
                 value = value
             };
@@ -758,7 +758,7 @@ namespace MailChimp
         /// <param name="name">The long description of the tag being added, used for user displays - max 50 bytes.</param>
         /// <param name="options">Optional various options for this merge var.</param>
         /// <returns></returns>
-        public StaticSegmentAddResult AddMergeVar(string listId, string tag, string name, object options)
+        public MergeVarInfo AddMergeVar(string listId, string tag, string name, object options)
         {
             // our api action:
             string apiAction = "lists/merge-var-add";
