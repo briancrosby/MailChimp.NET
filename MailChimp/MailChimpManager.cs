@@ -415,7 +415,7 @@ namespace MailChimp
         /// If you set segment_opts, you should have tested your options against campaign/segment-test().
         /// To clear/unset segment_opts, pass an empty string or array as the value. Various wrappers may require one or the other.
         /// </remarks>
-        public Campaign UpdateCampaign(string cId, string name, object[] value)
+        public Campaign UpdateCampaign(string cId, string name, object value)
         {
             //  Our api action:
             string apiAction = "campaigns/update";
