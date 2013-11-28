@@ -116,7 +116,7 @@ namespace MailChimp
         /// <param name="sort_field">one of "create_time", "send_time", "title", "subject" . Invalid values will fall back on "create_time" - case insensitive</param>
         /// <param name="sort_dir">"DESC" for descending (default), "ASC" for Ascending. Invalid values will fall back on "DESC" - case insensitive.</param>
         /// <returns></returns>
-        public CampaignListResult GetCampaigns(List<CampaignFilter> filterParam = null, int start = 0, int limit = 25, string sort_field = "create_time", string sort_dir = "DESC")
+        public CampaignListResult GetCampaigns(CampaignFilter filterParam = null, int start = 0, int limit = 25, string sort_field = "create_time", string sort_dir = "DESC")
         {
             //  Our api action:
             string apiAction = "campaigns/list";
@@ -404,18 +404,16 @@ namespace MailChimp
         /// See http://apidocs.mailchimp.com/api/2.0/campaigns/update.php for explanation of full options.
         /// </summary>
         /// <param name="cId">the id of the campaign</param>
-        /// <param name="options">A struct of the standard options for this campaign.</param>
-        /// <param name="content">The content for this campaign </param>
-        /// <param name="segmentOptions">optional - if you wish to do Segmentation with this campaign this array should contain: see CampaignSegmentTest(). It's suggested that you test your options against campaignSegmentTest().</param>
-        /// <param name="typeOptions">optional - various extra options based on the campaign type</param>
-        /// <returns></returns>
+        /// <param name="name">The parameter name (options, content, segment_opts) except "type_opts", which will be the name of the type - rss, auto, etc. The campaign "type" can not be changed.</param>
+        /// <param name="value">An appropriate set of values for the parameter.</param>
+        /// <returns>Updated campaign details and any errors</returns>
         /// <remarks>
         /// If you set a new list_id, all segmentation options will be deleted and must be re-added.
         /// If you set template_id, you need to follow that up by setting it's 'content'
         /// If you set segment_opts, you should have tested your options against campaign/segment-test().
         /// To clear/unset segment_opts, pass an empty string or array as the value. Various wrappers may require one or the other.
         /// </remarks>
-        public Campaign UpdateCampaign(string cId, string name, object[] value)
+        public Campaign UpdateCampaign(string cId, string name, object value)
         {
             //  Our api action:
             string apiAction = "campaigns/update";

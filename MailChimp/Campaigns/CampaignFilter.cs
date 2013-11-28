@@ -38,8 +38,8 @@ namespace MailChimp.Campaigns
         /// <summary>
         /// optional - only show campaigns from this folder id - get folders using campaignFolders(). Accepts multiples separated by commas when not using exact matching.
         /// </summary>
-        [DataMember(Name = "folder_id")]
-        public int FolderId
+        [DataMember(Name = "folder_id", EmitDefaultValue = false)]
+        public int? FolderId
         {
             get;
             set;
@@ -48,8 +48,8 @@ namespace MailChimp.Campaigns
         /// <summary>
         /// optional - only show campaigns using this template id - get templates using templates(). Accepts multiples separated by commas when not using exact matching.
         /// </summary>
-        [DataMember(Name = "template_id")]
-        public int TemplateId
+        [DataMember(Name = "template_id", EmitDefaultValue = false)]
+        public int? TemplateId
         {
             get;
             set;
@@ -139,7 +139,7 @@ namespace MailChimp.Campaigns
         /// whether to return just campaigns with or without segments
         /// </summary>
         [DataMember(Name = "uses_segment")]
-        public bool UsesSegment
+        public bool? UsesSegment
         {
             get;
             set;
@@ -149,7 +149,7 @@ namespace MailChimp.Campaigns
         /// optional - flag for whether to filter on exact values when filtering, or search within content for filter values - defaults to true. Using this disables the use of any filters that accept multiples.
         /// </summary>
         [DataMember(Name = "exact")]
-        public bool Exact
+        public bool? Exact
         {
             get;
             set;
